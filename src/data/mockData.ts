@@ -1,0 +1,400 @@
+export interface PdfReport {
+  id: string;
+  name: string;
+  date: string;
+  size: string;
+}
+
+export interface Indicator {
+  id: string;
+  name: string;
+  value: string;
+  unit: string;
+  trend: 'up' | 'down' | 'stable';
+  reports: PdfReport[];
+}
+
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  indicators: Indicator[];
+}
+
+export interface Management {
+  id: string;
+  name: string;
+  projects: Project[];
+}
+
+export interface Superintendence {
+  id: string;
+  name: string;
+  managements: Management[];
+}
+
+export interface Company {
+  id: string;
+  name: string;
+  fullName: string;
+  superintendences: Superintendence[];
+}
+
+export const companies: Company[] = [
+  {
+    id: 'coelba',
+    name: 'Coelba',
+    fullName: 'Neoenergia Coelba',
+    superintendences: [
+      {
+        id: 'sup-operacoes-ba',
+        name: 'Superintendência de Operações',
+        managements: [
+          {
+            id: 'ger-manutencao',
+            name: 'Gerência de Manutenção',
+            projects: [
+              {
+                id: 'proj-eficiencia-rede',
+                name: 'Eficiência de Rede',
+                description: 'Otimização da rede de distribuição',
+                indicators: [
+                  {
+                    id: 'ind-dec',
+                    name: 'DEC - Duração Equivalente por Consumidor',
+                    value: '12.5',
+                    unit: 'horas',
+                    trend: 'down',
+                    reports: [
+                      { id: 'rep-1', name: 'Relatório DEC Q4 2024.pdf', date: '2024-12-15', size: '2.4 MB' },
+                      { id: 'rep-2', name: 'Análise Comparativa DEC.pdf', date: '2024-11-30', size: '1.8 MB' },
+                    ],
+                  },
+                  {
+                    id: 'ind-fec',
+                    name: 'FEC - Frequência Equivalente por Consumidor',
+                    value: '8.2',
+                    unit: 'interrupções',
+                    trend: 'stable',
+                    reports: [
+                      { id: 'rep-3', name: 'Relatório FEC Q4 2024.pdf', date: '2024-12-15', size: '1.9 MB' },
+                    ],
+                  },
+                ],
+              },
+              {
+                id: 'proj-reducao-perdas',
+                name: 'Redução de Perdas Técnicas',
+                description: 'Programa de combate às perdas técnicas',
+                indicators: [
+                  {
+                    id: 'ind-perdas',
+                    name: 'Índice de Perdas Técnicas',
+                    value: '6.8',
+                    unit: '%',
+                    trend: 'down',
+                    reports: [
+                      { id: 'rep-4', name: 'Relatório Perdas Técnicas 2024.pdf', date: '2024-12-01', size: '3.2 MB' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: 'ger-qualidade',
+            name: 'Gerência de Qualidade',
+            projects: [
+              {
+                id: 'proj-satisfacao',
+                name: 'Satisfação do Cliente',
+                description: 'Monitoramento da satisfação',
+                indicators: [
+                  {
+                    id: 'ind-isqp',
+                    name: 'ISQP - Índice de Satisfação',
+                    value: '78.5',
+                    unit: '%',
+                    trend: 'up',
+                    reports: [
+                      { id: 'rep-5', name: 'Pesquisa Satisfação 2024.pdf', date: '2024-12-10', size: '4.1 MB' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'sup-comercial-ba',
+        name: 'Superintendência Comercial',
+        managements: [
+          {
+            id: 'ger-atendimento',
+            name: 'Gerência de Atendimento',
+            projects: [
+              {
+                id: 'proj-call-center',
+                name: 'Melhoria Call Center',
+                description: 'Otimização do atendimento telefônico',
+                indicators: [
+                  {
+                    id: 'ind-tma',
+                    name: 'TMA - Tempo Médio de Atendimento',
+                    value: '180',
+                    unit: 'segundos',
+                    trend: 'down',
+                    reports: [
+                      { id: 'rep-6', name: 'Dashboard Call Center.pdf', date: '2024-12-18', size: '1.5 MB' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cosern',
+    name: 'Cosern',
+    fullName: 'Neoenergia Cosern',
+    superintendences: [
+      {
+        id: 'sup-operacoes-rn',
+        name: 'Superintendência de Operações',
+        managements: [
+          {
+            id: 'ger-distribuicao-rn',
+            name: 'Gerência de Distribuição',
+            projects: [
+              {
+                id: 'proj-expansao-rn',
+                name: 'Expansão da Rede',
+                description: 'Ampliação da cobertura de distribuição',
+                indicators: [
+                  {
+                    id: 'ind-cobertura',
+                    name: 'Índice de Cobertura',
+                    value: '98.2',
+                    unit: '%',
+                    trend: 'up',
+                    reports: [
+                      { id: 'rep-7', name: 'Relatório Expansão 2024.pdf', date: '2024-12-05', size: '2.8 MB' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'brasilia',
+    name: 'Neoenergia Brasília',
+    fullName: 'Neoenergia Brasília',
+    superintendences: [
+      {
+        id: 'sup-operacoes-df',
+        name: 'Superintendência de Operações',
+        managements: [
+          {
+            id: 'ger-tecnica-df',
+            name: 'Gerência Técnica',
+            projects: [
+              {
+                id: 'proj-smart-grid',
+                name: 'Smart Grid',
+                description: 'Implementação de redes inteligentes',
+                indicators: [
+                  {
+                    id: 'ind-automacao',
+                    name: 'Nível de Automação',
+                    value: '45',
+                    unit: '%',
+                    trend: 'up',
+                    reports: [
+                      { id: 'rep-8', name: 'Projeto Smart Grid.pdf', date: '2024-11-28', size: '5.2 MB' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'elektro',
+    name: 'Elektro',
+    fullName: 'Neoenergia Elektro',
+    superintendences: [
+      {
+        id: 'sup-operacoes-sp',
+        name: 'Superintendência de Operações',
+        managements: [
+          {
+            id: 'ger-manutencao-sp',
+            name: 'Gerência de Manutenção',
+            projects: [
+              {
+                id: 'proj-preventiva',
+                name: 'Manutenção Preventiva',
+                description: 'Programa de manutenção preventiva',
+                indicators: [
+                  {
+                    id: 'ind-disponibilidade',
+                    name: 'Disponibilidade da Rede',
+                    value: '99.7',
+                    unit: '%',
+                    trend: 'stable',
+                    reports: [
+                      { id: 'rep-9', name: 'Manutenção Preventiva 2024.pdf', date: '2024-12-12', size: '3.4 MB' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'pernambuco',
+    name: 'Neoenergia Pernambuco',
+    fullName: 'Neoenergia Pernambuco',
+    superintendences: [
+      {
+        id: 'sup-operacoes-pe',
+        name: 'Superintendência de Operações',
+        managements: [
+          {
+            id: 'ger-projetos-pe',
+            name: 'Gerência de Projetos',
+            projects: [
+              {
+                id: 'proj-energia-solar',
+                name: 'Energia Solar Distribuída',
+                description: 'Integração de geração solar',
+                indicators: [
+                  {
+                    id: 'ind-gd',
+                    name: 'Conexões GD',
+                    value: '15420',
+                    unit: 'unidades',
+                    trend: 'up',
+                    reports: [
+                      { id: 'rep-10', name: 'Relatório GD 2024.pdf', date: '2024-12-08', size: '2.1 MB' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'distribuicao',
+    name: 'Neoenergia Distribuição',
+    fullName: 'Neoenergia Distribuição',
+    superintendences: [
+      {
+        id: 'sup-planejamento',
+        name: 'Superintendência de Planejamento',
+        managements: [
+          {
+            id: 'ger-estrategia',
+            name: 'Gerência de Estratégia',
+            projects: [
+              {
+                id: 'proj-integracao',
+                name: 'Integração Operacional',
+                description: 'Unificação de processos',
+                indicators: [
+                  {
+                    id: 'ind-sinergia',
+                    name: 'Índice de Sinergia',
+                    value: '82',
+                    unit: '%',
+                    trend: 'up',
+                    reports: [
+                      { id: 'rep-11', name: 'Relatório Integração.pdf', date: '2024-12-20', size: '4.5 MB' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
+// Helper function to get all searchable items
+export interface SearchResult {
+  type: 'indicator' | 'report';
+  path: string[];
+  indicator?: Indicator;
+  report?: PdfReport;
+  companyId: string;
+  superintendenceId: string;
+  managementId: string;
+  projectId: string;
+}
+
+export function searchIndicators(query: string): SearchResult[] {
+  const results: SearchResult[] = [];
+  const lowerQuery = query.toLowerCase();
+
+  companies.forEach((company) => {
+    company.superintendences.forEach((sup) => {
+      sup.managements.forEach((mgmt) => {
+        mgmt.projects.forEach((proj) => {
+          proj.indicators.forEach((ind) => {
+            const path = [company.name, sup.name, mgmt.name, proj.name];
+            
+            // Search in indicator name
+            if (ind.name.toLowerCase().includes(lowerQuery)) {
+              results.push({
+                type: 'indicator',
+                path: [...path, ind.name],
+                indicator: ind,
+                companyId: company.id,
+                superintendenceId: sup.id,
+                managementId: mgmt.id,
+                projectId: proj.id,
+              });
+            }
+
+            // Search in reports
+            ind.reports.forEach((report) => {
+              if (report.name.toLowerCase().includes(lowerQuery)) {
+                results.push({
+                  type: 'report',
+                  path: [...path, ind.name, report.name],
+                  report,
+                  indicator: ind,
+                  companyId: company.id,
+                  superintendenceId: sup.id,
+                  managementId: mgmt.id,
+                  projectId: proj.id,
+                });
+              }
+            });
+          });
+        });
+      });
+    });
+  });
+
+  return results;
+}
