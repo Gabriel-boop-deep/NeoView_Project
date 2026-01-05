@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu, Home, Star, HelpCircle, LogOut } from 'lucide-react';
 import { NeoLogo } from './NeoLogo';
 import { GlobalSearch } from './GlobalSearch';
+import { ThemeToggle } from './ThemeToggle';
 import { useNavigate } from 'react-router-dom';
 
 interface TopNavbarProps {
@@ -42,6 +43,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
         )}
 
         <nav className="flex items-center gap-1">
+          <ThemeToggle />
           {isAuthenticated ? (
             <>
               <button
