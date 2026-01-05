@@ -68,6 +68,9 @@ export const companies: Company[] = [
                     reports: [
                       { id: 'rep-1', name: 'Relatório DEC Q4 2024.pdf', date: '2024-12-15', size: '2.4 MB' },
                       { id: 'rep-2', name: 'Análise Comparativa DEC.pdf', date: '2024-11-30', size: '1.8 MB' },
+                      { id: 'rep-1a', name: 'DEC Mensal Dezembro 2024.pdf', date: '2024-12-28', size: '1.2 MB' },
+                      { id: 'rep-1b', name: 'DEC Histórico Anual 2024.pdf', date: '2024-12-20', size: '3.5 MB' },
+                      { id: 'rep-1c', name: 'Plano de Ação DEC 2025.pdf', date: '2024-12-22', size: '2.1 MB' },
                     ],
                   },
                   {
@@ -78,6 +81,8 @@ export const companies: Company[] = [
                     trend: 'stable',
                     reports: [
                       { id: 'rep-3', name: 'Relatório FEC Q4 2024.pdf', date: '2024-12-15', size: '1.9 MB' },
+                      { id: 'rep-3a', name: 'FEC por Região Bahia.pdf', date: '2024-12-10', size: '2.2 MB' },
+                      { id: 'rep-3b', name: 'Análise FEC vs Meta ANEEL.pdf', date: '2024-12-05', size: '1.6 MB' },
                     ],
                   },
                 ],
@@ -95,6 +100,9 @@ export const companies: Company[] = [
                     trend: 'down',
                     reports: [
                       { id: 'rep-4', name: 'Relatório Perdas Técnicas 2024.pdf', date: '2024-12-01', size: '3.2 MB' },
+                      { id: 'rep-4a', name: 'Mapeamento Perdas por Alimentador.pdf', date: '2024-11-25', size: '4.8 MB' },
+                      { id: 'rep-4b', name: 'Investimentos Redução Perdas.pdf', date: '2024-11-20', size: '2.3 MB' },
+                      { id: 'rep-4c', name: 'Benchmark Perdas Técnicas Brasil.pdf', date: '2024-11-15', size: '1.9 MB' },
                     ],
                   },
                 ],
@@ -118,6 +126,9 @@ export const companies: Company[] = [
                     trend: 'up',
                     reports: [
                       { id: 'rep-5', name: 'Pesquisa Satisfação 2024.pdf', date: '2024-12-10', size: '4.1 MB' },
+                      { id: 'rep-5a', name: 'ISQP Detalhado por Município.pdf', date: '2024-12-08', size: '5.2 MB' },
+                      { id: 'rep-5b', name: 'Plano Melhoria Satisfação.pdf', date: '2024-12-01', size: '2.8 MB' },
+                      { id: 'rep-5c', name: 'Comparativo ISQP 2023-2024.pdf', date: '2024-11-28', size: '1.7 MB' },
                     ],
                   },
                 ],
@@ -147,6 +158,9 @@ export const companies: Company[] = [
                     trend: 'down',
                     reports: [
                       { id: 'rep-6', name: 'Dashboard Call Center.pdf', date: '2024-12-18', size: '1.5 MB' },
+                      { id: 'rep-6a', name: 'TMA por Tipo de Chamada.pdf', date: '2024-12-15', size: '1.8 MB' },
+                      { id: 'rep-6b', name: 'Relatório Produtividade Agentes.pdf', date: '2024-12-12', size: '2.4 MB' },
+                      { id: 'rep-6c', name: 'Análise Picos de Demanda.pdf', date: '2024-12-10', size: '1.3 MB' },
                     ],
                   },
                 ],
@@ -183,6 +197,9 @@ export const companies: Company[] = [
                     trend: 'up',
                     reports: [
                       { id: 'rep-7', name: 'Relatório Expansão 2024.pdf', date: '2024-12-05', size: '2.8 MB' },
+                      { id: 'rep-7a', name: 'Mapa Cobertura RN 2024.pdf', date: '2024-12-01', size: '6.2 MB' },
+                      { id: 'rep-7b', name: 'Plano Expansão 2025-2027.pdf', date: '2024-11-28', size: '3.9 MB' },
+                      { id: 'rep-7c', name: 'Investimentos Infraestrutura.pdf', date: '2024-11-20', size: '2.5 MB' },
                     ],
                   },
                 ],
@@ -219,6 +236,10 @@ export const companies: Company[] = [
                     trend: 'up',
                     reports: [
                       { id: 'rep-8', name: 'Projeto Smart Grid.pdf', date: '2024-11-28', size: '5.2 MB' },
+                      { id: 'rep-8a', name: 'Arquitetura Smart Grid DF.pdf', date: '2024-11-25', size: '4.1 MB' },
+                      { id: 'rep-8b', name: 'ROI Automação de Rede.pdf', date: '2024-11-20', size: '2.3 MB' },
+                      { id: 'rep-8c', name: 'Cronograma Implantação 2025.pdf', date: '2024-11-15', size: '1.8 MB' },
+                      { id: 'rep-8d', name: 'Estudo Viabilidade Técnica.pdf', date: '2024-11-10', size: '3.6 MB' },
                     ],
                   },
                 ],
@@ -255,6 +276,9 @@ export const companies: Company[] = [
                     trend: 'stable',
                     reports: [
                       { id: 'rep-9', name: 'Manutenção Preventiva 2024.pdf', date: '2024-12-12', size: '3.4 MB' },
+                      { id: 'rep-9a', name: 'Calendário Manutenções 2025.pdf', date: '2024-12-10', size: '1.9 MB' },
+                      { id: 'rep-9b', name: 'Indicadores MTBF MTTR.pdf', date: '2024-12-05', size: '2.1 MB' },
+                      { id: 'rep-9c', name: 'Análise Falhas Recorrentes.pdf', date: '2024-12-01', size: '2.8 MB' },
                     ],
                   },
                 ],
@@ -291,6 +315,10 @@ export const companies: Company[] = [
                     trend: 'up',
                     reports: [
                       { id: 'rep-10', name: 'Relatório GD 2024.pdf', date: '2024-12-08', size: '2.1 MB' },
+                      { id: 'rep-10a', name: 'Mapa Solar Pernambuco.pdf', date: '2024-12-05', size: '7.3 MB' },
+                      { id: 'rep-10b', name: 'Análise Impacto Rede GD.pdf', date: '2024-12-01', size: '3.2 MB' },
+                      { id: 'rep-10c', name: 'Projeção Conexões 2025.pdf', date: '2024-11-28', size: '1.8 MB' },
+                      { id: 'rep-10d', name: 'Regulamentação ANEEL GD.pdf', date: '2024-11-20', size: '2.4 MB' },
                     ],
                   },
                 ],
@@ -327,6 +355,10 @@ export const companies: Company[] = [
                     trend: 'up',
                     reports: [
                       { id: 'rep-11', name: 'Relatório Integração.pdf', date: '2024-12-20', size: '4.5 MB' },
+                      { id: 'rep-11a', name: 'Roadmap Unificação Sistemas.pdf', date: '2024-12-18', size: '3.1 MB' },
+                      { id: 'rep-11b', name: 'KPIs Sinergia Operacional.pdf', date: '2024-12-15', size: '2.6 MB' },
+                      { id: 'rep-11c', name: 'Benchmark Melhores Práticas.pdf', date: '2024-12-10', size: '4.2 MB' },
+                      { id: 'rep-11d', name: 'Governança Integração.pdf', date: '2024-12-05', size: '1.9 MB' },
                     ],
                   },
                 ],
