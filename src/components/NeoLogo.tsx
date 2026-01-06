@@ -10,9 +10,9 @@ interface NeoLogoProps {
 
 export const NeoLogo: React.FC<NeoLogoProps> = ({ size = 'md', showText = true }) => {
   const dimensions = {
-    sm: { icon: 36, text: 'text-lg' },
-    md: { icon: 70, text: 'text-xl' },
-    lg: { icon: 70, text: 'text-3xl' },
+    sm: { icon: 35, text: 'text-lg' },
+    md: { icon: 35, text: 'text-xl' },
+    lg: { icon: 40, text: 'text-3xl' },
   };
   const { icon, text } = dimensions[size];
 
