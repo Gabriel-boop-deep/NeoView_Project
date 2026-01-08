@@ -46,9 +46,52 @@ export const companies: Company[] = [
     name: 'Coelba',
     fullName: 'Neoenergia Coelba',
     superintendences: [
+      
+{
+  id: 'sup-relacionamento-clientes',
+  name: 'Superintendência de Relacionamento com Clientes',
+  managements: [
+    {
+      id: 'ger-receita',
+      name: 'Gerência da Gestão da Receita',
+      projects: [
+                {
+                  id: 'uni-gestao-operacional-comercial',
+                  name: 'Unidade Gestão Operacional Comercial',
+                  description: 'Gestão operacional das atividades comerciais (processos, SLA, indicadores e melhorias).',
+                  indicators: [],
+                },
+                {
+                  id: 'uni-recuperacao-energia',
+                  name: 'Unidade Recuperação de Energia',
+                  description: 'Ações de recuperação de energia e combate a irregularidades em geração distribuída e consumo.',
+                  indicators: [],
+                },
+                {
+                  id: 'uni-recuperacao-credito',
+                  name: 'Unidade de Recuperação de Crédito',
+                  description: 'Estratégias e operações de cobrança e recuperação de crédito (inadimplência).',
+                  indicators: [],
+                },
+              ],
+            },
+                {
+                  id: 'ger-grandes-clientes',
+                  name: 'Gerência de Grandes Clientes',
+                  projects: [],
+                },
+                {
+                  id: 'ger-relacionamento-poder-publico',
+                  name: 'Gerência de Relacionamento com o Poder Público',
+                  projects: [],
+                },
+
+          ],
+        },
+
       {
         id: 'sup-operacoes-ba',
-        name: 'Superintendência de Operações',
+        name: 'Superintendência Operação Centro Norte',
         managements: [
           {
             id: 'ger-manutencao',
@@ -138,8 +181,8 @@ export const companies: Company[] = [
         ],
       },
       {
-        id: 'sup-comercial-ba',
-        name: 'Superintendência Comercial',
+        id: 'sup-expancao-ba',
+        name: 'Superintendência Expansão e Preservação',
         managements: [
           {
             id: 'ger-atendimento',
@@ -169,6 +212,23 @@ export const companies: Company[] = [
           },
         ],
       },
+      {
+        id: 'sup-operacao-metropolitano-sul',
+        name: 'Superintendência Operação Metropolitano Sul',
+        managements: [],
+      },
+      {
+        id: 'sup-operacao-sudoeste-oeste',
+        name: 'Superintendência Operação Sudoeste Oeste',
+        managements: [],
+      },
+      {
+        id: 'sup-tecnica-coelba',
+        name: 'Superintendência Técnica Coelba',
+        managements: [],
+      }
+
+    
     ],
   },
   {
@@ -328,47 +388,7 @@ export const companies: Company[] = [
         ],
       },
     ],
-  },
-  {
-    id: 'distribuicao',
-    name: 'Neoenergia Distribuição',
-    fullName: 'Neoenergia Distribuição',
-    superintendences: [
-      {
-        id: 'sup-planejamento',
-        name: 'Superintendência de Planejamento',
-        managements: [
-          {
-            id: 'ger-estrategia',
-            name: 'Gerência de Estratégia',
-            projects: [
-              {
-                id: 'proj-integracao',
-                name: 'Integração Operacional',
-                description: 'Unificação de processos',
-                indicators: [
-                  {
-                    id: 'ind-sinergia',
-                    name: 'Índice de Sinergia',
-                    value: '82',
-                    unit: '%',
-                    trend: 'up',
-                    reports: [
-                      { id: 'rep-11', name: 'Relatório Integração.pdf', date: '2024-12-20', size: '4.5 MB' },
-                      { id: 'rep-11a', name: 'Roadmap Unificação Sistemas.pdf', date: '2024-12-18', size: '3.1 MB' },
-                      { id: 'rep-11b', name: 'KPIs Sinergia Operacional.pdf', date: '2024-12-15', size: '2.6 MB' },
-                      { id: 'rep-11c', name: 'Benchmark Melhores Práticas.pdf', date: '2024-12-10', size: '4.2 MB' },
-                      { id: 'rep-11d', name: 'Governança Integração.pdf', date: '2024-12-05', size: '1.9 MB' },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
+  }
 ];
 
 // Helper function to get all searchable items

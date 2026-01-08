@@ -29,9 +29,9 @@ export const HierarchyCard: React.FC<HierarchyCardProps> = ({
   };
 
   const labels = {
-    superintendence: 'gerências',
-    management: 'projetos',
-    project: 'indicadores',
+    superintendence: 'Gerências',
+    management: 'Unidades',
+    project: 'Indicadores',
   };
 
   const Icon = icons[type];

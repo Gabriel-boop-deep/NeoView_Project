@@ -1,11 +1,12 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NeoLogo } from '@/components/NeoLogo';
-import { Mail, Lock, AlertCircle } from 'lucide-react';
+import { User as UserIcon, Lock, AlertCircle } from 'lucide-react';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); // trocado de email -> username
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +18,7 @@ const Login: React.FC = () => {
 
     // Simple mock authentication
     setTimeout(() => {
-      if (email && password) {
+      if (username && password) {
         localStorage.setItem('neoview_auth', 'true');
         navigate('/dashboard');
       } else {
@@ -51,20 +52,25 @@ const Login: React.FC = () => {
               </div>
             )}
 
-            {/* Email Field */}
+            {/* Usuário Field (substitui o campo E-mail) */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                E-mail
+              <label htmlFor="username" className="block text-sm font-medium text-foreground mb-2">
+                Usuário
               </label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="seu@email.com"
+                  id="username"
+                  name="username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value.trim())}
+                  placeholder="Ex: U123456"
                   className="search-input pl-12"
+                  autoComplete="username"
+                  inputMode="text"
+                  spellCheck={false}
+                  autoCapitalize="off"
                   required
                 />
               </div>

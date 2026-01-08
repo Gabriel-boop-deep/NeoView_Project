@@ -40,13 +40,21 @@
     --radius: 0.5rem;
 
     /* Sidebar */
-    --sidebar-background: 220 20% 20%;
-    --sidebar-foreground: 210 15% 85%;
+    
+    /* Sidebar (tema claro) — cinza claro */
+    --sidebar-background: 0 0% 90%;         /* fundo cinza claro (#f4f4f4) */
+    --sidebar-foreground: 220 20% 20%;      /* texto cinza escuro */
+    --sidebar-border: 0 0% 88%;             /* borda cinza (#e1e1e1) */
+    --sidebar-accent: 0 0% 90%;             /* hover/acento (#e6e6e6) */
+    --sidebar-accent-foreground: 220 20% 20%; /* texto do hover/acento */
+
+    /* --sidebar-background: 220 20% 20%; */
+    /* --sidebar-foreground: 210 15% 85%; */
     --sidebar-primary: 145 100% 32%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 28%;
-    --sidebar-accent-foreground: 210 15% 95%;
-    --sidebar-border: 220 15% 28%;
+    /* --sidebar-accent: 220 15% 28%; */
+    /* --sidebar-accent-foreground: 210 15% 95%; */
+    /* --sidebar-border: 220 15% 28%; */
     --sidebar-ring: 145 100% 32%;
 
     /* Custom gradients */

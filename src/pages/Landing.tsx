@@ -49,7 +49,7 @@ const Landing: React.FC = () => {
         <div className="container mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-8">
             <Shield className="w-4 h-4" />
-            Plataforma Corporativa Segura
+            Plataforma Corporativa
           </div>
           
           <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
@@ -107,7 +107,7 @@ const Landing: React.FC = () => {
       {/* Footer */}
       <footer className="py-8 border-t border-border">
         <div className="container mx-auto px-6 text-center text-sm text-muted-foreground">
-          <p>© 2024 NeoView - Plataforma de Relatórios Corporativos</p>
+          <p>© 2026 NeoView - Plataforma de Relatórios Corporativos</p>
           <p className="mt-1">Grupo Neoenergia</p>
         </div>
       </footer>

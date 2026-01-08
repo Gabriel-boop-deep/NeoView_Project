@@ -76,7 +76,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose }) => {
           {/* Footer */}
           <div className={`p-4 border-t border-sidebar-border ${!isOpen && 'lg:hidden'}`}>
             <p className="text-xs text-sidebar-foreground/60">
-              NeoView v1.0.0
+              NeoView v1.0.2
             </p>
           </div>
         </div>
