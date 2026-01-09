@@ -13,7 +13,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose }) => {
 
   const menuItems = [
     { icon: Home, label: 'Início', path: '/dashboard' },
-    { icon: Building2, label: 'Empresas', path: '/dashboard' },
+    { icon: Building2, label: 'Workspace', path: '/dashboard' },
     { icon: FileText, label: 'Relatórios', path: '/dashboard' },
     { icon: BarChart3, label: 'Indicadores', path: '/dashboard' },
     { icon: Settings, label: 'Configurações', path: '/dashboard' },
