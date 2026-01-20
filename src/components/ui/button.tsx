@@ -18,6 +18,14 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
 
+<button
+  onClick={onClick}
+  className="
+    company-card hierarchy-card
+    w-full text-left group
+  "
+>
+
         // NOVOS variants para mini ações
         soft: "bg-primary/15 text-primary hover:bg-primary/20",
         muted: "bg-muted text-muted-foreground hover:bg-accent/20 hover:text-foreground",

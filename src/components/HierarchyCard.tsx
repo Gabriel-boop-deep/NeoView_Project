@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, Users, Briefcase, FolderOpen, ChevronRight } from 'lucide-react';
+import { Building2, Users, Briefcase, Handshake  , ChevronRight } from 'lucide-react';
 
 interface HierarchyCardProps {
   type: 'superintendence' | 'management' | 'project';
@@ -19,7 +19,7 @@ export const HierarchyCard: React.FC<HierarchyCardProps> = ({
   const icons = {
     superintendence: Building2,
     management: Users,
-    project: FolderOpen,
+    project: Handshake  ,
   };
 
   const colors = {

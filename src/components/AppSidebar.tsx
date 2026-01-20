@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Building2, FileText, BarChart3, Settings, ChevronLeft } from 'lucide-react';
+import { Home, BriefcaseBusiness, Files , ChartLine , Settings, ChevronLeft } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface AppSidebarProps {
@@ -13,9 +13,9 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose }) => {
 
   const menuItems = [
     { icon: Home, label: 'Início', path: '/dashboard' },
-    { icon: Building2, label: 'Workspace', path: '/dashboard' },
-    { icon: FileText, label: 'Relatórios', path: '/dashboard' },
-    { icon: BarChart3, label: 'Indicadores', path: '/dashboard' },
+    { icon: BriefcaseBusiness, label: 'Workspace', path: '/dashboard' },
+    { icon: Files , label: 'Relatórios', path: '/dashboard' },
+    { icon: ChartLine , label: 'Indicadores', path: '/dashboard' },
     { icon: Settings, label: 'Configurações', path: '/dashboard' },
   ];
 

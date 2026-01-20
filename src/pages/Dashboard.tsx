@@ -7,7 +7,7 @@ import { CompanyCard } from '@/components/CompanyCard';
 import { HierarchyCard } from '@/components/HierarchyCard';
 import { IndicatorCard } from '@/components/IndicatorCard';
 import { companies, Company, Superintendence, Management, Project } from '@/data/mockData';
-import { Mail, BarChart3, Settings } from 'lucide-react';
+import { FileUser , HandCoins , Bolt  } from 'lucide-react';
 
 type NavigationLevel = 'companies' | 'superintendences' | 'managements' | 'projects' | 'indicators';
 
@@ -129,9 +129,9 @@ const Dashboard: React.FC = () => {
   };
 
   const categoryButtons = [
-    { icon: Mail, label: 'Relatórios Corporativos', color: 'border-primary text-primary hover:bg-primary/10' },
-    { icon: BarChart3, label: 'Financeiros', color: 'border-secondary text-secondary hover:bg-secondary/10' },
-    { icon: Settings, label: 'Operacionais', color: 'border-accent text-accent hover:bg-accent/10' },
+    { icon: FileUser , label: 'Relatórios Corporativos', color: 'border-primary text-primary hover:bg-primary/10' },
+    { icon: HandCoins , label: 'Financeiros', color: 'border-secondary text-secondary hover:bg-secondary/10' },
+    { icon: Bolt , label: 'Operacionais', color: 'border-accent text-accent hover:bg-accent/10' },
   ];
 
   return (
@@ -183,7 +183,7 @@ const Dashboard: React.FC = () => {
               </div>
 
               {/* Category Buttons */}
-              <div className="flex flex-wrap justify-center gap-4">
+              {/* <div className="flex flex-wrap justify-center gap-4">
                 {categoryButtons.map((btn) => {
                   const Icon = btn.icon;
                   return (
@@ -193,7 +193,7 @@ const Dashboard: React.FC = () => {
                     </button>
                   );
                 })}
-              </div>
+              </div> */}
             </>
           )}
 

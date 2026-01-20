@@ -1,10 +1,15 @@
+
+/* Import da fonte */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+/* =========================
+   Variáveis de tema (claro/escuro)
+   ========================= */
 @layer base {
   :root {
     /* NeoView Corporate Design System */
@@ -39,38 +44,33 @@
 
     --radius: 0.5rem;
 
-    /* Sidebar */
-    
     /* Sidebar (tema claro) — cinza claro */
-    --sidebar-background: 0 0% 90%;         /* fundo cinza claro (#f4f4f4) */
-    --sidebar-foreground: 220 20% 20%;      /* texto cinza escuro */
-    --sidebar-border: 0 0% 88%;             /* borda cinza (#e1e1e1) */
-    --sidebar-accent: 0 0% 90%;             /* hover/acento (#e6e6e6) */
-    --sidebar-accent-foreground: 220 20% 20%; /* texto do hover/acento */
+    --sidebar-background: 0 0% 90%;             /* #f4f4f4 */
+    --sidebar-foreground: 220 20% 20%;          /* texto cinza escuro */
+    --sidebar-border: 0 0% 88%;                 /* #e1e1e1 */
+    --sidebar-accent: 0 0% 90%;                 /* hover/acento (#e6e6e6) */
+    --sidebar-accent-foreground: 220 20% 20%;   /* texto do hover/acento */
 
-    /* --sidebar-background: 220 20% 20%; */
-    /* --sidebar-foreground: 210 15% 85%; */
+    /* Verde da sidebar (claro) */
     --sidebar-primary: 145 100% 32%;
     --sidebar-primary-foreground: 0 0% 100%;
-    /* --sidebar-accent: 220 15% 28%; */
-    /* --sidebar-accent-foreground: 210 15% 95%; */
-    /* --sidebar-border: 220 15% 28%; */
     --sidebar-ring: 145 100% 32%;
 
-    /* Custom gradients */
+    /* Gradientes */
     --gradient-hero: linear-gradient(135deg, hsl(145 100% 32%) 0%, hsl(199 99% 52%) 100%);
     --gradient-card-hover: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
-    
-    /* Shadows */
+
+    /* Sombras */
     --shadow-card: 0 2px 8px -2px hsl(220 20% 20% / 0.08), 0 4px 16px -4px hsl(220 20% 20% / 0.06);
     --shadow-card-hover: 0 4px 16px -4px hsl(145 100% 32% / 0.15), 0 8px 24px -8px hsl(220 20% 20% / 0.1);
     --shadow-navbar: 0 1px 3px hsl(220 20% 20% / 0.08);
   }
 
+  /* Tema escuro (ativado por .dark em html/body) */
   .dark {
     --background: 220 20% 10%;
     --foreground: 210 15% 95%;
-
+    
     --card: 220 20% 14%;
     --card-foreground: 210 15% 95%;
 
@@ -96,9 +96,10 @@
     --input: 220 15% 25%;
     --ring: 145 100% 40%;
 
+    /* Sidebar (escuro) */
     --sidebar-background: 220 20% 8%;
     --sidebar-foreground: 210 15% 85%;
-    --sidebar-primary: 145 100% 40%;
+    --sidebar-primary: 145 100% 20%;            /* verde mais luminoso para contraste no escuro */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 15% 16%;
     --sidebar-accent-foreground: 210 15% 95%;
@@ -107,6 +108,9 @@
   }
 }
 
+/* =========================
+   Base/Reset e tipografia
+   ========================= */
 @layer base {
   * {
     @apply border-border;
@@ -118,22 +122,82 @@
   }
 }
 
+/* =========================
+   Componentes
+   ========================= */
 @layer components {
+  /* Link de navegação genérico (pode ser usado fora da sidebar também) */
   .nav-link {
-    @apply flex items-center gap-3 px-4 py-2.5 text-sidebar-foreground/80 rounded-lg transition-all duration-200;
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200;
+    color: hsl(var(--sidebar-foreground) / 0.8);
+    /* Transições suaves adicionais */
+    transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
   }
 
+  /* Hover genérico (fora ou dentro da sidebar) — usa acento da sidebar para consistência */
   .nav-link:hover {
-    @apply bg-sidebar-accent text-sidebar-accent-foreground;
+    background-color: hsl(var(--sidebar-accent));
+    color: hsl(var(--sidebar-accent-foreground));
   }
 
+  /* ATIVO: agora usa o VERDE da SIDEBAR em vez do --primary global */
   .nav-link.active {
-    @apply bg-primary text-primary-foreground font-medium;
+    background-color: hsl(var(--sidebar-primary));
+    color: hsl(var(--sidebar-primary-foreground));
+    font-weight: 500; /* font-medium */
   }
 
+  /* ===== Sidebar específica ===== */
+  /* Garanta que o container da sidebar tenha a classe .sidebar */
+  .sidebar {
+    background-color: hsl(var(--sidebar-background));
+    color: hsl(var(--sidebar-foreground));
+    border-right: 1px solid hsl(var(--sidebar-border));
+  }
+
+  .sidebar .nav-link {
+    /* Realça foco e dá sensação de clique */
+    will-change: background-color, color, box-shadow, transform;
+  }
+
+  .sidebar .nav-link:hover {
+    background-color: hsl(var(--sidebar-accent));
+    color: hsl(var(--sidebar-accent-foreground));
+  }
+
+  .sidebar .nav-link.active {
+    background-color: hsl(var(--sidebar-primary));
+    color: hsl(var(--sidebar-primary-foreground));
+    font-weight: 500;
+  }
+
+  /* Foco/keyboard-friendly com anel da sidebar */
+  .sidebar .nav-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px hsl(var(--sidebar-ring) / 0.35);
+  }
+  
+  /* Ícones dentro do link ativo/herdando cor do texto */
+  .sidebar .nav-link svg {
+    color: currentColor;
+    fill: currentColor;
+    transition: color .2s ease;
+  }
+
+  .sidebar .nav-link.active svg {
+    color: hsl(var(--sidebar-primary-foreground));
+    fill: currentColor;
+  }
+
+  /* Cards */
   .company-card {
     @apply bg-card rounded-xl p-6 transition-all duration-300 cursor-pointer;
     box-shadow: var(--shadow-card);
+  }
+  
+  .dark .company-card {
+    border: 1px solid hsl(var(--primary) / 0.5); /* verde claro */
+    border-radius: 0.5rem; /* igual ao Tailwind rounded-lg */
   }
 
   .company-card:hover {
@@ -141,10 +205,12 @@
     transform: translateY(-2px);
   }
 
+  /* Input de busca */
   .search-input {
     @apply w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200;
   }
 
+  /* Breadcrumbs */
   .breadcrumb-link {
     @apply text-muted-foreground hover:text-primary transition-colors duration-200;
   }
@@ -153,15 +219,20 @@
     @apply text-foreground font-medium;
   }
 
+  /* Botões de categoria */
   .category-button {
     @apply flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 font-medium transition-all duration-200;
   }
 
+  /* Hero com gradiente */
   .hero-gradient {
     background: var(--gradient-hero);
   }
 }
 
+/* =========================
+   Utilitários
+   ========================= */
 @layer utilities {
   .text-gradient {
     background: var(--gradient-hero);
