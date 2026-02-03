@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { TopNavbar } from '@/components/TopNavbar';
 import { AppSidebar } from '@/components/AppSidebar';
+import { ChatWidget } from '@/components/Chatbot';
 import { Breadcrumb, BreadcrumbItem } from '@/components/Breadcrumb';
 import { CompanyCard } from '@/components/CompanyCard';
 import { HierarchyCard } from '@/components/HierarchyCard';
@@ -262,6 +263,8 @@ const Dashboard: React.FC = () => {
           )}
         </div>
       </main>
+
+      <ChatWidget />
     </div>
   );
 };

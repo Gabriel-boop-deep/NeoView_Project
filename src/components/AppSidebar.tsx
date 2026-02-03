@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Building2, FileText, BarChart3, Settings, ChevronLeft } from 'lucide-react';
+import { Home, Building2, FileText, BarChart3, Settings, ChevronLeft, CheckSquare } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface AppSidebarProps {
@@ -13,10 +13,11 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose }) => {
 
   const menuItems = [
     { icon: Home, label: 'Início', path: '/dashboard' },
-    { icon: Building2, label: 'Empresas', path: '/dashboard' },
-    { icon: FileText, label: 'Relatórios', path: '/dashboard' },
-    { icon: BarChart3, label: 'Indicadores', path: '/dashboard' },
-    { icon: Settings, label: 'Configurações', path: '/dashboard' },
+    { icon: Building2, label: 'Empresas', path: '/companies' },
+    { icon: FileText, label: 'Relatórios', path: '/reports' },
+    { icon: BarChart3, label: 'Indicadores', path: '/indicators' },
+    { icon: CheckSquare, label: 'Aprovações', path: '/approvals' },
+    { icon: Settings, label: 'Configurações', path: '/settings' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
