@@ -46,7 +46,7 @@ const MOCK_RESPONSES: Record<string, { content: string; sources: SearchSource[] 
     ],
   },
   default: {
-    content: 'Posso ajudá-lo a encontrar indicadores e relatórios da Neoenergia. Experimente perguntar sobre:\n\n• **DEC** - Duração de interrupções\n• **FEC** - Frequência de interrupções\n• **Perdas Técnicas** - Eficiência da rede\n• **Satisfação do Cliente** - ISQP\n\nOu busque por uma empresa específica como Coelba, Cosern, Elektro, etc.',
+    content: 'Entendi! 🔍 Deixe-me buscar informações relacionadas...\n\nPosso ajudá-lo a encontrar indicadores e relatórios da Neoenergia. Experimente perguntar sobre:\n\n• **DEC** - Duração de interrupções\n• **FEC** - Frequência de interrupções\n• **Perdas Técnicas** - Eficiência da rede\n• **Satisfação do Cliente** - ISQP\n• **Smart Grid** - Automação de rede\n\nOu busque por uma empresa específica como Neoenergia Coelba, Neoenergia Cosern, Neoenergia Elektro, etc.',
     sources: [],
   },
 };
