@@ -98,7 +98,7 @@ export function useChatbot(): UseChatbotReturn {
         id: 'msg-welcome',
         session_id: newSession.id,
         role: 'assistant',
-        content: 'Olá! 👋 Sou o assistente do NeoView. Posso ajudá-lo a encontrar indicadores e relatórios das empresas Neoenergia. Como posso ajudar?',
+        content: 'Olá! ✨ Eu sou a **IRÍS**, sua assistente de busca semântica do NeoView.\n\nPosso ajudá-lo a encontrar indicadores, relatórios e informações sobre as empresas Neoenergia. Experimente perguntar sobre:\n\n• Indicadores como DEC, FEC ou Perdas Técnicas\n• Relatórios específicos de uma empresa\n• Informações sobre superintendências ou projetos\n\nComo posso ajudar hoje?',
         created_at: new Date().toISOString(),
       },
     ]);
