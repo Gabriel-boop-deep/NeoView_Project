@@ -8,7 +8,7 @@ const Index = () => {
     // Check if user is authenticated
     const isAuth = localStorage.getItem('neoview_auth');
     if (isAuth) {
-      navigate('/dashboard');
+      navigate('/home');
     } else {
       navigate('/landing');
     }

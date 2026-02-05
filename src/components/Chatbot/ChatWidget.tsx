@@ -1,15 +1,16 @@
 /**
  * ============================================================
- * COMPONENT: ChatWidget
+ * COMPONENT: ChatWidget - IRÍS
  * ============================================================
  * 
- * Widget flutuante de chatbot com busca semântica.
+ * Widget flutuante de chatbot IRÍS com busca semântica.
  * Posicionado no canto inferior direito da tela.
+ * Inclui animação de "pensando" e interface melhorada.
  * ============================================================
  */
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Loader2, Minimize2, Maximize2 } from 'lucide-react';
+import { MessageCircle, X, Send, Minimize2, Maximize2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useChatbot } from '@/hooks/useChatbot';
@@ -77,15 +78,21 @@ export function ChatWidget({ className }: ChatWidgetProps) {
       {isOpen && (
         <div
           className={cn(
-            'mb-4 bg-card border border-border rounded-2xl shadow-xl overflow-hidden transition-all duration-300',
+            'mb-4 bg-card border border-border rounded-2xl shadow-xl overflow-hidden transition-all duration-300 animate-scale-in',
             isExpanded ? 'w-[500px] h-[600px]' : 'w-[380px] h-[500px]'
           )}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 bg-primary text-primary-foreground">
+          <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
             <div className="flex items-center gap-2">
-              <MessageCircle className="w-5 h-5" />
-              <span className="font-semibold">Assistente NeoView</span>
+              <div className="relative">
+                <Sparkles className="w-5 h-5 animate-pulse" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-ping" />
+              </div>
+              <div>
+                <span className="font-bold text-lg">IRÍS</span>
+                <p className="text-xs opacity-80">Assistente de Busca</p>
+              </div>
             </div>
             <div className="flex items-center gap-1">
               <Button
@@ -118,15 +125,25 @@ export function ChatWidget({ className }: ChatWidgetProps) {
               </div>
             ))}
 
+            {/* Animação de Pensando */}
             {isTyping && (
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Loader2 className="w-4 h-4 animate-spin" />
-                <span className="text-sm">Digitando...</span>
+              <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50 animate-fade-in">
+                <div className="flex items-center gap-1">
+                  <Sparkles className="w-4 h-4 text-primary animate-spin" />
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="text-sm text-muted-foreground">IRÍS está pensando</span>
+                  <span className="flex gap-1">
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </span>
+                </div>
               </div>
             )}
 
             {error && (
-              <div className="p-3 rounded-lg bg-destructive/10 text-destructive text-sm">
+              <div className="p-3 rounded-lg bg-destructive/10 text-destructive text-sm animate-fade-in">
                 {error}
               </div>
             )}
@@ -135,7 +152,7 @@ export function ChatWidget({ className }: ChatWidgetProps) {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSubmit} className="p-4 border-t border-border">
+          <form onSubmit={handleSubmit} className="p-4 border-t border-border bg-card">
             <div className="flex items-center gap-2">
               <input
                 ref={inputRef}
@@ -143,37 +160,40 @@ export function ChatWidget({ className }: ChatWidgetProps) {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Pergunte sobre indicadores..."
+                placeholder="Pergunte para IRÍS..."
                 className="flex-1 px-4 py-2 rounded-full border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 disabled={isLoading}
               />
               <Button
                 type="submit"
                 size="icon"
-                className="rounded-full"
+                className="rounded-full bg-primary hover:bg-primary/90"
                 disabled={!inputValue.trim() || isLoading}
               >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Send className="w-4 h-4" />
-                )}
+                <Send className="w-4 h-4" />
               </Button>
             </div>
           </form>
         </div>
       )}
 
-      {/* Toggle Button */}
+      {/* Toggle Button com Animação */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
         size="lg"
         className={cn(
-          'rounded-full w-14 h-14 shadow-lg transition-transform hover:scale-110',
-          isOpen && 'rotate-90'
+          'rounded-full w-14 h-14 shadow-lg transition-all duration-300 hover:scale-110 bg-gradient-to-br from-primary to-primary/80',
+          isOpen && 'rotate-180'
         )}
       >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {isOpen ? (
+          <X className="w-6 h-6 transition-transform" />
+        ) : (
+          <div className="relative">
+            <MessageCircle className="w-6 h-6" />
+            <Sparkles className="w-3 h-3 absolute -top-1 -right-1 text-yellow-300 animate-pulse" />
+          </div>
+        )}
       </Button>
     </div>
   );

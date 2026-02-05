@@ -1,11 +1,4 @@
-
-// src/components/CompanyCard.tsx
 import React from 'react';
-
-// ⇩ Se puder, renomeie o arquivo p/ kebab-case e use essa linha com o novo nome.
-// import companyLogo from './images/ib-symbol-positive-colour_white-background.png';
-
-// ⇩ Se precisar manter com espaços/maiúsculas, use exatamente esse import:
 import companyLogo from './images/IB-Symbol positive colour_white background.png';
 
 interface CompanyCardProps {
@@ -31,7 +24,6 @@ export const CompanyCard: React.FC<CompanyCardProps> = ({ name, fullName, onClic
           <h3 className="text-xl font-semibold text-primary group-hover:text-primary/80 transition-colors">
             {name}
           </h3>
-          <p className="text-sm text-muted-foreground">{fullName}</p>
         </div>
       </div>
     </button>

@@ -31,7 +31,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
               <Menu className="w-5 h-5 text-foreground" />
             </button>
           )}
-          <button onClick={() => navigate(isAuthenticated ? '/dashboard' : '/')}>
+          <button onClick={() => navigate(isAuthenticated ? '/home' : '/')}>
             <NeoLogo size="md" />
           </button>
         </div>
@@ -47,17 +47,23 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
           {isAuthenticated ? (
             <>
               <button
-                onClick={() => navigate('/dashboard')}
+                onClick={() => navigate('/home')}
                 className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors text-sm text-foreground"
               >
                 <Home className="w-4 h-4" />
                 <span className="hidden sm:inline">Início</span>
               </button>
-              <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors text-sm text-foreground">
+              <button
+                onClick={() => navigate('/favorites')}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors text-sm text-foreground"
+              >
                 <Star className="w-4 h-4" />
                 <span className="hidden sm:inline">Favoritos</span>
               </button>
-              <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors text-sm text-foreground">
+              <button
+                onClick={() => navigate('/help')}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-muted transition-colors text-sm text-foreground"
+              >
                 <HelpCircle className="w-4 h-4" />
                 <span className="hidden sm:inline">Ajuda</span>
               </button>

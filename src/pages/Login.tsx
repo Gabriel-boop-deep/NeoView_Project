@@ -2,25 +2,94 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NeoLogo } from '@/components/NeoLogo';
-import { User as UserIcon, Lock, AlertCircle } from 'lucide-react';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { User as UserIcon, Lock, AlertCircle, Loader2 } from 'lucide-react';
+
+/**
+ * ============================================================
+ * PAGE: Login
+ * ============================================================
+ * 
+ * Página de login preparada para integração com SAP HANA.
+ * A autenticação será feita via requisição Python que valida
+ * as credenciais contra o SAP HANA.
+ * 
+ * INTEGRAÇÃO BACKEND (Python):
+ * ```python
+ * # Endpoint: POST /api/auth/login
+ * # Body: { "username": "U123456", "password": "xxx" }
+ * 
+ * import hdbcli.dbapi
+ * 
+ * def authenticate_user(username: str, password: str) -> dict:
+ *     conn = hdbcli.dbapi.connect(
+ *         address="<HANA_HOST>",
+ *         port=30015,
+ *         user="SYSTEM",
+ *         password="<HANA_PASSWORD>"
+ *     )
+ *     cursor = conn.cursor()
+ *     cursor.execute(
+ *         "SELECT * FROM NEOVIEW.T_USERS WHERE username = ? AND is_active = TRUE",
+ *         (username,)
+ *     )
+ *     user = cursor.fetchone()
+ *     
+ *     if user and verify_password(password, user.password_hash):
+ *         return {
+ *             "success": True,
+ *             "token": generate_jwt(user),
+ *             "user": { ... }
+ *         }
+ *     return { "success": False, "error": "Credenciais inválidas" }
+ * ```
+ * ============================================================
+ */
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState(''); // trocado de email -> username
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  /**
+   * Handler de submit preparado para integração com SAP HANA via Python.
+   * 
+   * Em produção, substituir o mock por:
+   * ```typescript
+   * const response = await fetch('/api/auth/login', {
+   *   method: 'POST',
+   *   headers: { 'Content-Type': 'application/json' },
+   *   body: JSON.stringify({ username, password }),
+   * });
+   * const data = await response.json();
+   * 
+   * if (data.success) {
+   *   localStorage.setItem('neoview_token', data.token);
+   *   localStorage.setItem('neoview_user', JSON.stringify(data.user));
+   *   navigate('/home');
+   * } else {
+   *   setError(data.error);
+   * }
+   * ```
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
-    // Simple mock authentication
+    // Mock authentication - substituir por chamada real ao backend Python/SAP HANA
     setTimeout(() => {
       if (username && password) {
+        // Simula sucesso - em produção, salvar token JWT retornado pelo backend
         localStorage.setItem('neoview_auth', 'true');
-        navigate('/dashboard');
+        localStorage.setItem('neoview_user', JSON.stringify({
+          username,
+          name: 'Usuário NeoView',
+          role: 'supervisor', // 'user' ou 'supervisor'
+        }));
+        navigate('/home');
       } else {
         setError('Por favor, preencha todos os campos.');
       }
@@ -31,6 +100,11 @@ const Login: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        {/* Theme Toggle */}
+        <div className="absolute top-4 right-4">
+          <ThemeToggle />
+        </div>
+
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-block">
@@ -52,7 +126,7 @@ const Login: React.FC = () => {
               </div>
             )}
 
-            {/* Usuário Field (substitui o campo E-mail) */}
+            {/* Usuário Field */}
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-foreground mb-2">
                 Usuário
@@ -74,6 +148,9 @@ const Login: React.FC = () => {
                   required
                 />
               </div>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Seu código de usuário SAP
+              </p>
             </div>
 
             {/* Password Field */}
@@ -99,9 +176,16 @@ const Login: React.FC = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              {isLoading ? 'Entrando...' : 'Entrar'}
+              {isLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Autenticando...
+                </>
+              ) : (
+                'Entrar'
+              )}
             </button>
           </form>
         </div>

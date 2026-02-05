@@ -3,12 +3,14 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { TopNavbar } from '@/components/TopNavbar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { ChatWidget } from '@/components/Chatbot';
+import { RankingPanel } from '@/components/RankingPanel';
+import { ReportCard } from '@/components/ReportCard';
 import { Breadcrumb, BreadcrumbItem } from '@/components/Breadcrumb';
 import { CompanyCard } from '@/components/CompanyCard';
 import { HierarchyCard } from '@/components/HierarchyCard';
 import { IndicatorCard } from '@/components/IndicatorCard';
-import { companies, Company, Superintendence, Management, Project } from '@/data/mockData';
-import { Mail, BarChart3, Settings } from 'lucide-react';
+import { companies, Company, Superintendence, Management, Project, Indicator } from '@/data/mockData';
+import { Trophy, ChevronDown, ChevronUp } from 'lucide-react';
 
 type NavigationLevel = 'companies' | 'superintendences' | 'managements' | 'projects' | 'indicators';
 
@@ -16,6 +18,8 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [rankingOpen, setRankingOpen] = useState(false);
+  const [expandedIndicators, setExpandedIndicators] = useState<Set<string>>(new Set());
 
   // Navigation state
   const [level, setLevel] = useState<NavigationLevel>('companies');
@@ -66,6 +70,7 @@ const Dashboard: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('neoview_auth');
+    localStorage.removeItem('neoview_user');
     navigate('/');
   };
 
@@ -129,11 +134,17 @@ const Dashboard: React.FC = () => {
     return items;
   };
 
-  const categoryButtons = [
-    { icon: Mail, label: 'Relatórios Corporativos', color: 'border-primary text-primary hover:bg-primary/10' },
-    { icon: BarChart3, label: 'Financeiros', color: 'border-secondary text-secondary hover:bg-secondary/10' },
-    { icon: Settings, label: 'Operacionais', color: 'border-accent text-accent hover:bg-accent/10' },
-  ];
+  const toggleIndicatorExpanded = (indicatorId: string) => {
+    setExpandedIndicators(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(indicatorId)) {
+        newSet.delete(indicatorId);
+      } else {
+        newSet.add(indicatorId);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -145,17 +156,33 @@ const Dashboard: React.FC = () => {
 
       <AppSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <main className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-16'}`}>
+      <main className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-16'} ${rankingOpen ? 'lg:mr-80' : ''}`}>
         <div className="container mx-auto px-6 py-8">
-          {/* Breadcrumb */}
-          {level !== 'companies' && (
-            <Breadcrumb
-              items={[
-                { label: 'Empresas', onClick: () => resetToLevel('companies') },
-                ...buildBreadcrumbs(),
-              ]}
-            />
-          )}
+          {/* Header com Ranking */}
+          <div className="flex items-center justify-between mb-4">
+            {/* Breadcrumb */}
+            {level !== 'companies' && (
+              <Breadcrumb
+                items={[
+                  { label: 'Empresas', onClick: () => resetToLevel('companies') },
+                  ...buildBreadcrumbs(),
+                ]}
+              />
+            )}
+            
+            {/* Ranking Toggle */}
+            <button
+              onClick={() => setRankingOpen(!rankingOpen)}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                rankingOpen 
+                  ? 'bg-primary text-primary-foreground' 
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              }`}
+            >
+              <Trophy className="w-4 h-4" />
+              Ranking
+            </button>
+          </div>
 
           {/* Page Title */}
           <h1 className="text-2xl lg:text-3xl font-bold text-foreground mb-8">
@@ -168,34 +195,19 @@ const Dashboard: React.FC = () => {
 
           {/* Companies Grid */}
           {level === 'companies' && (
-            <>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                {companies.map((company) => (
-                  <CompanyCard
-                    key={company.id}
-                    name={company.name}
-                    fullName={company.fullName}
-                    onClick={() => {
-                      setSelectedCompany(company);
-                      setLevel('superintendences');
-                    }}
-                  />
-                ))}
-              </div>
-
-              {/* Category Buttons */}
-              <div className="flex flex-wrap justify-center gap-4">
-                {categoryButtons.map((btn) => {
-                  const Icon = btn.icon;
-                  return (
-                    <button key={btn.label} className={`category-button ${btn.color}`}>
-                      <Icon className="w-5 h-5" />
-                      {btn.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {companies.map((company) => (
+                <CompanyCard
+                  key={company.id}
+                  name={company.name}
+                  fullName={company.fullName}
+                  onClick={() => {
+                    setSelectedCompany(company);
+                    setLevel('superintendences');
+                  }}
+                />
+              ))}
+            </div>
           )}
 
           {/* Superintendences Grid */}
@@ -253,16 +265,69 @@ const Dashboard: React.FC = () => {
             </div>
           )}
 
-          {/* Indicators List */}
+          {/* Indicators with Expandable Reports */}
           {level === 'indicators' && selectedProject && (
-            <div className="space-y-4">
+            <div className="space-y-6">
               {selectedProject.indicators.map((indicator) => (
-                <IndicatorCard key={indicator.id} indicator={indicator} />
+                <div key={indicator.id} className="space-y-4">
+                  {/* Indicator Header */}
+                  <div 
+                    className="bg-card border border-border rounded-xl p-6 cursor-pointer hover:shadow-card-hover transition-all"
+                    onClick={() => toggleIndicatorExpanded(indicator.id)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-foreground">{indicator.name}</h3>
+                        <p className="text-sm text-muted-foreground mt-1">{indicator.description}</p>
+                        <div className="flex items-center gap-4 mt-3">
+                          <span className="text-2xl font-bold text-primary">{indicator.value} {indicator.unit}</span>
+                          <span className={`text-sm font-medium ${
+                            indicator.trend === 'up' ? 'text-green-500' :
+                            indicator.trend === 'down' ? 'text-red-500' : 'text-muted-foreground'
+                          }`}>
+                            {indicator.trend === 'up' ? '↑ Subindo' : 
+                             indicator.trend === 'down' ? '↓ Descendo' : '→ Estável'}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-muted-foreground">{indicator.reports.length} relatórios</span>
+                        {expandedIndicators.has(indicator.id) ? (
+                          <ChevronUp className="w-5 h-5 text-muted-foreground" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Expandable Reports Grid */}
+                  {expandedIndicators.has(indicator.id) && (
+                    <div className="pl-6 animate-fade-in">
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {indicator.reports.map((report) => (
+                          <ReportCard key={report.id} report={report} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           )}
         </div>
       </main>
+
+      {/* Ranking Panel */}
+      <RankingPanel
+        isOpen={rankingOpen}
+        onClose={() => setRankingOpen(false)}
+        currentLevel={level}
+        selectedCompanyId={selectedCompany?.id}
+        selectedSupId={selectedSuperintendence?.id}
+        selectedMgmtId={selectedManagement?.id}
+        selectedProjId={selectedProject?.id}
+      />
 
       <ChatWidget />
     </div>
