@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NeoLogo } from '@/components/NeoLogo';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Building2, FileText, Search, ArrowRight, Shield, BarChart3 } from 'lucide-react';
 
 const Landing: React.FC = () => {
@@ -19,8 +20,8 @@ const Landing: React.FC = () => {
     },
     {
       icon: Search,
-      title: 'Busca Global',
-      description: 'Encontre indicadores e relatórios rapidamente.',
+      title: 'Busca Semântica com IRÍS',
+      description: 'Encontre informações usando linguagem natural.',
     },
     {
       icon: BarChart3,
@@ -35,12 +36,15 @@ const Landing: React.FC = () => {
       <header className="bg-card border-b border-border">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <NeoLogo size="lg" />
-          <button
-            onClick={() => navigate('/login')}
-            className="px-6 py-2.5 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-          >
-            Entrar
-          </button>
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <button
+              onClick={() => navigate('/login')}
+              className="px-6 py-2.5 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+            >
+              Entrar
+            </button>
+          </div>
         </div>
       </header>
 
