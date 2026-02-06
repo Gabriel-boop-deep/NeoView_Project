@@ -154,33 +154,19 @@ const Dashboard: React.FC = () => {
 
       <AppSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <main className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-16'} ${rankingOpen ? 'lg:mr-80' : ''}`}>
+      <main className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-16'}`}>
         <div className="container mx-auto px-6 py-8">
-          {/* Header com Ranking */}
-          <div className="flex items-center justify-between mb-4">
-            {/* Breadcrumb */}
-            {level !== 'companies' && (
+          {/* Breadcrumb */}
+          {level !== 'companies' && (
+            <div className="mb-4">
               <Breadcrumb
                 items={[
                   { label: 'Empresas', onClick: () => resetToLevel('companies') },
                   ...buildBreadcrumbs(),
                 ]}
               />
-            )}
-            
-            {/* Ranking Toggle */}
-            <button
-              onClick={() => setRankingOpen(!rankingOpen)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-                rankingOpen 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
-              }`}
-            >
-              <Trophy className="w-4 h-4" />
-              Ranking
-            </button>
-          </div>
+            </div>
+          )}
 
           {/* Page Title */}
           <h1 className="text-2xl lg:text-3xl font-bold text-foreground mb-8">
