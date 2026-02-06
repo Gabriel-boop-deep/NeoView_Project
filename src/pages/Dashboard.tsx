@@ -17,7 +17,6 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [rankingOpen, setRankingOpen] = useState(false);
   const [expandedIndicators, setExpandedIndicators] = useState<Set<string>>(new Set());
 
   // Navigation state
