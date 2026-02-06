@@ -10,7 +10,6 @@ import {
   Star,
   HelpCircle,
   X,
-  Building2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -26,7 +25,6 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ isOpen, onClose }) => {
   const menuItems = [
     { icon: Home, label: 'Início', path: '/home' },
     { icon: LayoutDashboard, label: 'Meu Workspace', path: '/workspace' },
-    { icon: Building2, label: 'Empresas', path: '/dashboard' },
     { icon: FileText, label: 'Relatórios', path: '/reports' },
     { icon: BarChart3, label: 'Indicadores', path: '/indicators' },
     { icon: CheckSquare, label: 'Aprovações', path: '/approvals' },
