@@ -1,15 +1,16 @@
 /**
  * FloatingAssistant - Coordinated Chat + Ranking floating widget
  * 
- * Layout (bottom-right corner):
- * - Default: Ranking pill below Chat FAB
- * - Ranking open (chat closed): Ranking panel slides up, pushing chat FAB up
- * - Chat open (ranking closed): Chat window above FAB
- * - Both open: Chat window + Ranking panel side by side above FABs
+ * Bottom-right corner:
+ * - Ranking pill + Chat FAB side by side
+ * - Ranking panel slides up above ranking pill
+ * - Chat window slides up above chat FAB
+ * - Both can be open simultaneously, side by side
  */
 
 import React, { useState } from 'react';
-import { Trophy } from 'lucide-react';
+import { MessageCircle, X, Trophy, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { ChatWidget } from '@/components/Chatbot/ChatWidget';
 import { RankingPanel } from '@/components/RankingPanel';
@@ -33,18 +34,15 @@ export function FloatingAssistant({
   const [rankingOpen, setRankingOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-      {/* Panels area - above the FABs */}
-      <div className={cn(
-        'flex items-end gap-3 transition-all duration-300',
-        (!chatOpen && !rankingOpen) && 'pointer-events-none'
-      )}>
-        {/* Ranking Panel (slides in from right or appears on left of chat) */}
+    <div className="fixed bottom-6 right-6 z-50">
+      {/* Panels row - above the FABs */}
+      <div className="flex items-end gap-3 mb-3">
+        {/* Ranking Panel */}
         <div className={cn(
           'transition-all duration-300 origin-bottom-right',
           rankingOpen
             ? 'opacity-100 scale-100 translate-y-0'
-            : 'opacity-0 scale-95 translate-y-4 pointer-events-none'
+            : 'opacity-0 scale-95 translate-y-8 pointer-events-none h-0'
         )}>
           <RankingPanel
             isOpen={rankingOpen}
@@ -63,7 +61,7 @@ export function FloatingAssistant({
           'transition-all duration-300 origin-bottom-right',
           chatOpen
             ? 'opacity-100 scale-100 translate-y-0'
-            : 'opacity-0 scale-95 translate-y-4 pointer-events-none'
+            : 'opacity-0 scale-95 translate-y-8 pointer-events-none h-0'
         )}>
           <ChatWidget
             isOpen={chatOpen}
@@ -74,14 +72,14 @@ export function FloatingAssistant({
       </div>
 
       {/* FAB row */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center justify-end gap-3">
         {/* Ranking pill */}
         <button
           onClick={() => setRankingOpen(!rankingOpen)}
           className={cn(
             'flex items-center gap-2 px-4 py-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105 font-medium text-sm',
             rankingOpen
-              ? 'bg-primary text-primary-foreground'
+              ? 'bg-gradient-to-r from-yellow-600 to-amber-500 text-white'
               : 'bg-card border border-border text-foreground hover:bg-muted'
           )}
         >
@@ -89,12 +87,24 @@ export function FloatingAssistant({
           <span>Ranking</span>
         </button>
 
-        {/* Chat FAB - rendered by ChatWidget internally but we need to control it */}
-        <ChatWidget
-          isOpen={chatOpen}
-          onToggle={() => setChatOpen(!chatOpen)}
-          fabOnly
-        />
+        {/* Chat FAB */}
+        <Button
+          onClick={() => setChatOpen(!chatOpen)}
+          size="lg"
+          className={cn(
+            'rounded-full w-14 h-14 shadow-lg transition-all duration-300 hover:scale-110 bg-gradient-to-br from-primary to-primary/80',
+            chatOpen && 'rotate-180'
+          )}
+        >
+          {chatOpen ? (
+            <X className="w-6 h-6 transition-transform" />
+          ) : (
+            <div className="relative">
+              <MessageCircle className="w-6 h-6" />
+              <Sparkles className="w-3 h-3 absolute -top-1 -right-1 text-yellow-300 animate-pulse" />
+            </div>
+          )}
+        </Button>
       </div>
     </div>
   );
