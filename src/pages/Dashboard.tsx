@@ -302,18 +302,13 @@ const Dashboard: React.FC = () => {
         </div>
       </main>
 
-      {/* Ranking Panel */}
-      <RankingPanel
-        isOpen={rankingOpen}
-        onClose={() => setRankingOpen(false)}
+      <FloatingAssistant
         currentLevel={level}
         selectedCompanyId={selectedCompany?.id}
         selectedSupId={selectedSuperintendence?.id}
         selectedMgmtId={selectedManagement?.id}
         selectedProjId={selectedProject?.id}
       />
-
-      <ChatWidget />
     </div>
   );
 };
