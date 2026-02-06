@@ -158,15 +158,15 @@ export function ChatWidget({ className, isOpen: controlledOpen, onClose, onToggl
     return (
       <>
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
-          <div className="flex items-center gap-2">
-            <div className="relative">
-              <Sparkles className="w-5 h-5 animate-pulse" />
+        <div className="flex items-center justify-between px-3 py-2.5 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground min-h-[48px]">
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="relative flex-shrink-0">
+              <Sparkles className="w-4 h-4 animate-pulse" />
               <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-ping" />
             </div>
-            <div>
-              <span className="font-bold text-lg">IRÍS</span>
-              <p className="text-xs opacity-80">Assistente de Busca</p>
+            <div className="min-w-0">
+              <span className="font-bold text-sm leading-tight block">IRÍS</span>
+              <p className="text-[10px] opacity-80 leading-tight truncate">Assistente de Busca</p>
             </div>
           </div>
           <div className="flex items-center gap-1">
