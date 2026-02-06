@@ -9,7 +9,7 @@ import { CompanyCard } from '@/components/CompanyCard';
 import { HierarchyCard } from '@/components/HierarchyCard';
 import { IndicatorCard } from '@/components/IndicatorCard';
 import { companies, Company, Superintendence, Management, Project, Indicator } from '@/data/mockData';
-import { Trophy, ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 type NavigationLevel = 'companies' | 'superintendences' | 'managements' | 'projects' | 'indicators';
 
